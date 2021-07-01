@@ -1,41 +1,11 @@
 from typing import Callable
 
-from PySide6.QtGui import QPixmap, QMouseEvent, Qt, QEnterEvent
 from PySide6.QtWidgets import QMainWindow, QVBoxLayout, QWidget, QLabel, QHBoxLayout
 
+from minesweeper.board_model import BoardModel
 from minesweeper import settings
-
-
-class Cell(QLabel):
-    """Cell
-
-    A cell has the following states.
-    - default
-    - hover
-
-    States.
-    default -> hover
-    hover -> default
-    """
-    image_default = settings.IMAGE_CELL_DEFAULT
-
-    def __init__(self, x: int, y: int, mouse_click_callback: Callable[[int, int], None]):
-        super(Cell, self).__init__()
-
-        self.x = x
-        self.y = y
-        cell_pixmap = QPixmap(self.image_default)
-        self.setPixmap(cell_pixmap)
-        self.mouse_click_callback = mouse_click_callback
-
-    def mousePressEvent(self, ev: QMouseEvent) -> None:
-        if ev.button() == Qt.LeftButton:
-            self.mouse_click_callback(self.x, self.y)
-        elif ev.button() == Qt.RightButton:
-            print(f'x: {self.x}, y: {self.y} - right button pressed')
-
-    def enterEvent(self, event: QEnterEvent) -> None:
-        print(event.type())
+from minesweeper.board_view import BoardView
+from minesweeper.game_controller import GameController
 
 
 class MainWindow(QMainWindow):
@@ -53,14 +23,10 @@ class MainWindow(QMainWindow):
 
         rows = 3
         columns = 3
-
-        for i in range(rows):
-            row_layout = QHBoxLayout()
-            row_layout.setSpacing(0)
-            for j in range(columns):
-                cell = Cell(i, j, self.cell_click_handler)
-                row_layout.addWidget(cell)
-            page_layout.addLayout(row_layout)
+        board_size = rows * columns
+        board_model = BoardModel(board_size)
+        board_view = BoardView(rows, columns, page_layout)
+        game_controller = GameController(board_model, board_view)
 
         page_layout.setSpacing(0)
         page_layout.setSizeConstraint(page_layout.SetFixedSize)
