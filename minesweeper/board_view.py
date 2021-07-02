@@ -2,7 +2,7 @@ from typing import List
 
 from PySide6.QtWidgets import QBoxLayout, QHBoxLayout
 
-from minesweeper import BoardModel
+from minesweeper.board_model import BoardModel
 from minesweeper.cell_view import CellView
 from minesweeper.game_controller import GameController
 

@@ -1,6 +1,6 @@
 from typing import TYPE_CHECKING
 
-from minesweeper import BoardModel
+from minesweeper.board_model import BoardModel
 
 if TYPE_CHECKING:
     from minesweeper.board_view import BoardView
