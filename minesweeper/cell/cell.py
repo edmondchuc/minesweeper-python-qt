@@ -1,5 +1,5 @@
-from minesweeper.cell.state.base_state import CellState
-from minesweeper.cell.state.default_state import CellDefaultState
+from minesweeper.cell.state.base import CellState
+from minesweeper.cell.state.default import CellDefaultState
 
 
 class Cell:
@@ -20,3 +20,9 @@ class Cell:
 
     def set_state_hover_exit(self):
         self._state.set_state_hover_exit(self)
+
+    def set_state_left_click_down(self):
+        self._state.set_state_left_click_down(self)
+
+    def set_state_left_click_release(self):
+        self._state.set_state_left_click_release(self)

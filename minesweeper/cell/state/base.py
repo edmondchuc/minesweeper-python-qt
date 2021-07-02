@@ -13,7 +13,10 @@ class CellState:
     def set_state_hover_exit(self, cell: 'Cell'):
         pass
 
-    def set_state_left_click(self, cell: 'Cell'):
+    def set_state_left_click_down(self, cell: 'Cell'):
+        pass
+
+    def set_state_left_click_release(self, cell: 'Cell'):
         pass
 
     def set_state_right_click(self, cell: 'Cell'):

@@ -21,3 +21,11 @@ class GameController:
     def cell_hover_leave_event(self, identifier: int):
         self.board_model.cell_hover_leave_event(identifier)
         self.view.set_view(identifier, self.board_model)
+
+    def cell_left_click_down_event(self, identifier: int):
+        self.board_model.cell_left_click_down_event(identifier)
+        self.view.set_view(identifier, self.board_model)
+
+    def cell_left_click_release_event(self, identifier: int):
+        self.board_model.cell_left_click_release_event(identifier)
+        self.view.set_view(identifier, self.board_model)

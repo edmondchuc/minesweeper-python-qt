@@ -1,5 +1,5 @@
 from PySide6.QtCore import QEvent
-from PySide6.QtGui import QPixmap, QMouseEvent, Qt, QEnterEvent
+from PySide6.QtGui import QMouseEvent, Qt, QEnterEvent
 from PySide6.QtWidgets import QLabel
 
 from minesweeper import settings
@@ -19,9 +19,15 @@ class CellView(QLabel):
 
     def mousePressEvent(self, ev: QMouseEvent) -> None:
         if ev.button() == Qt.LeftButton:
-            print(f'x: {self.x}, y: {self.y} - left button pressed')
+            self.game_controller.cell_left_click_down_event(self.identifier)
         elif ev.button() == Qt.RightButton:
-            print(f'x: {self.x}, y: {self.y} - right button pressed')
+            print(f'identifier: {self.identifier} - right button pressed')
+
+    def mouseReleaseEvent(self, ev: QMouseEvent) -> None:
+        if ev.button() == Qt.LeftButton:
+            self.game_controller.cell_left_click_release_event(self.identifier)
+        elif ev.button() == Qt.RightButton:
+            print(f'identifier: {self.identifier} - right button released {self.is_mouse_hover}')
 
     def enterEvent(self, event: QEnterEvent) -> None:
         self.game_controller.cell_hover_enter_event(self.identifier)

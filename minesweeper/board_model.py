@@ -12,3 +12,9 @@ class BoardModel:
 
     def cell_hover_leave_event(self, identifier: int):
         self.cells[identifier].set_state_hover_exit()
+
+    def cell_left_click_down_event(self, identifier: int):
+        self.cells[identifier].set_state_left_click_down()
+
+    def cell_left_click_release_event(self, identifier: int):
+        self.cells[identifier].set_state_left_click_release()

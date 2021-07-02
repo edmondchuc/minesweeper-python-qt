@@ -26,5 +26,6 @@ class MainWindow(QMainWindow):
         columns = 3
         board_size = rows * columns
         board_model = BoardModel(board_size)
+        board_model.cells[0].is_bomb = True
         board_view = BoardView(rows, columns, page_layout)
         game_controller = GameController(board_model, board_view)

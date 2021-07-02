@@ -2,8 +2,8 @@ from typing import TYPE_CHECKING
 
 if TYPE_CHECKING:
     from minesweeper.cell import Cell
-from minesweeper.cell.state.base_state import CellState
-from minesweeper.cell.state.hover_state import CellHoverState
+from minesweeper.cell.state.base import CellState
+from minesweeper.cell.state.hover import CellHoverState
 
 from minesweeper import settings
 
