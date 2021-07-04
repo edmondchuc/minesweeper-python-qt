@@ -27,7 +27,7 @@ class CellView(QLabel):
         if ev.button() == Qt.LeftButton:
             self.game_controller.cell_left_click_release_event(self.identifier)
         elif ev.button() == Qt.RightButton:
-            print(f'identifier: {self.identifier} - right button released {self.is_mouse_hover}')
+            print(f'identifier: {self.identifier} - right button released')
 
     def enterEvent(self, event: QEnterEvent) -> None:
         self.game_controller.cell_hover_enter_event(self.identifier)

@@ -1,11 +1,32 @@
+from typing import List
+
 from minesweeper.cell.state.base import CellState
 from minesweeper.cell.state.default import CellDefaultState
 
 
 class Cell:
-    def __init__(self, is_bomb: bool = False):
+
+    def __init__(self, identifier: int, is_bomb: bool = False):
+        self._identifier = identifier
         self.is_bomb = is_bomb
         self._state = CellDefaultState()
+        self._neighbours = list()
+        self.neighbour_bomb_count = 0
+
+    def __repr__(self):
+        return f'Cell {self.identifier}'
+
+    @property
+    def identifier(self):
+        return self._identifier
+
+    @property
+    def neighbours(self) -> List['Cell']:
+        return self._neighbours
+
+    @neighbours.setter
+    def neighbours(self, value: List['Cell']):
+        self._neighbours = value
 
     @property
     def state(self):

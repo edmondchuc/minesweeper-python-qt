@@ -22,10 +22,11 @@ class MainWindow(QMainWindow):
         title_label = QLabel('Welcome!')
         page_layout.addWidget(title_label)
 
-        rows = 3
-        columns = 3
+        rows = 9
+        columns = 9
+        board_length = 9
+        bomb_count = 10
         board_size = rows * columns
-        board_model = BoardModel(board_size)
-        board_model.cells[0].is_bomb = True
+        board_model = BoardModel(board_length, bomb_count)
         board_view = BoardView(rows, columns, page_layout)
         game_controller = GameController(board_model, board_view)

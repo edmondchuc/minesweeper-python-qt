@@ -28,4 +28,6 @@ class GameController:
 
     def cell_left_click_release_event(self, identifier: int):
         self.board_model.cell_left_click_release_event(identifier)
-        self.view.set_view(identifier, self.board_model)
+        # We render the view of all cells in case some cell states have been changed to a reveal state.
+        for cell_view in self.board_view.cells:
+            self.view.set_view(cell_view.identifier, self.board_model)
